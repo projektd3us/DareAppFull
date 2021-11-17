@@ -1,0 +1,44 @@
+html, body, .container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    display:flex;
+	flex-flow: column nowrap;
+}
+
+.main-toolbar{
+    flex:none;
+    padding: 0 10px;
+}
+.main-toolbar>*{
+    padding: 0 5px;
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.drawer-container {
+    flex:auto;
+	/* overflow-y:auto; */
+}
+  
+/* .drawer-content {
+}
+  
+.drawer-sidenav {
+
+} */
+
+.options-container{
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: auto; */
+}
+
+.sidenav-button{
+    padding: 10px 50px;
+}

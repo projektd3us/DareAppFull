@@ -1,0 +1,37 @@
+.example-container {
+    height: auto;
+    max-width: 100%;
+  }
+  
+  table {
+    width: 100%;
+  }
+
+.mat-column-DareId{
+    flex: 0 0 10% !important;
+}
+
+.mat-column-DareText{
+    flex: 0 0 65% !important;
+}
+
+.mat-column-DareTypeName{
+  flex: 0 0 auto !important;
+  overflow-x: hidden;
+}
+
+/* .mat-column-actions{
+    width:15%;
+} */
+
+
+mat-row{
+  cursor: pointer;
+}
+
+.add-button-container{
+  position: fixed; 
+  z-index: 999; 
+  right: 10px; 
+  bottom: 10px;
+}

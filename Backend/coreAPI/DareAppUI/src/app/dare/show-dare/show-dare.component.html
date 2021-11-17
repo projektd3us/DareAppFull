@@ -1,0 +1,24 @@
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Dare Id</th>
+            <th>Dare Text</th>
+            <th>DareType Name</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of DareList">
+            <td>{{dataItem.DareId}}</td>
+            <td>{{dataItem.DareText}}</td>
+            <td>{{dataItem.DareTypeName}}</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1">Edit</button>
+                <button type="button" class="btn btn-light mr-1">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
