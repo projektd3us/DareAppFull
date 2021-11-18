@@ -1,0 +1,24 @@
+<!-- <div>
+    <mat-card fxLayout="column">
+        <mat-card-header>
+            <div mat-card-avatar class="easy-avatar avatar"></div>
+            <mat-card-title>Easy Dares</mat-card-title>
+            <mat-card-subtitle>Simple but fun dares for the *cluck* chickens</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <mat-card>Simple card</mat-card>
+    <mat-card>Simple card</mat-card>
+    <mat-card>Simple card</mat-card>
+</div> -->
+
+
+<div class="dark-background container">
+    <mat-card *ngFor="let card of cards" class="card" color="primary" matRipple matRippleColor="#33333320">
+        <mat-card-header>
+            <div mat-card-avatar class=" default avatar" [ngClass]="card.DareTypeName.toLowerCase()"></div>
+            <mat-card-title>{{ card.DareTypeName }} Dares</mat-card-title>
+            <mat-card-subtitle> A huge number of {{ card.DareTypeName }} Dares for you!</mat-card-subtitle>
+            <!-- <mat-card-subtitle> {{ card.DareTypeDescription}} </mat-card-subtitle> -->
+        </mat-card-header>
+    </mat-card>
+</div>
