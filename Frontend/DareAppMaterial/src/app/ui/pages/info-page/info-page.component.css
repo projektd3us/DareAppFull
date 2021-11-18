@@ -1,5 +1,5 @@
 li {
-    padding-top:10px;
+    padding-top:1em;
 }
 .bar{
     padding: 0;
@@ -8,4 +8,5 @@ li {
 }
 .info-container{
     padding: 8px 15px;
+    font-size: calc(70% + 0.8vw);
 }

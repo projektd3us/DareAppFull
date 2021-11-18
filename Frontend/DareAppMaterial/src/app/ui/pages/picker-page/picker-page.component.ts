@@ -20,22 +20,18 @@ export class PickerPageComponent implements OnInit {
       this.cards = [
         { 
           DareTypeId: 1,
-          DareTypeName: 'Testing Easy'},
+          DareTypeName: 'Easy'},
         {
           DareTypeId: 2,
-          DareTypeName: 'Testing Crazy'
+          DareTypeName: 'Crazy'
         },
         {
           DareTypeId: 3,
-          DareTypeName: 'Testing Hard'
+          DareTypeName: 'Hard'
         },
         {
           DareTypeId: 4,
-          DareTypeName: 'Testing MachineLearned'
-        },
-        {
-          DareTypeId: 5,
-          DareTypeName: 'Testing Card Fire Games'
+          DareTypeName: 'Machine Generated'
         }
       ]
     }
