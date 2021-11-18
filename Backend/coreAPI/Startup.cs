@@ -7,6 +7,8 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using System.IO;
+using Microsoft.AspNetCore.Authentication.JwtBearer; //Jwt auth package 5.0.0 @robert
+using Microsoft.IdentityModel.Tokens;                // also for Jwt
 
 namespace coreAPI
 {
@@ -42,6 +44,22 @@ namespace coreAPI
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "DareAppUI/dist";
+            });
+
+            //Jwt auth @robert
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
             });
         }
 
@@ -94,6 +112,10 @@ namespace coreAPI
                 FileProvider= new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"Photos")),
                 RequestPath="/Photos"
             });
+
+            //Jwt Auth @robert
+            app.UseAuthentication();
+
         }
     }
 }
