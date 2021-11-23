@@ -16,6 +16,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 
 
 
@@ -37,7 +41,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatGridListModule,
     MatCardModule,
     MatBottomSheetModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatChipsModule,
+    MatSnackBarModule
   ],
   providers: [{
     provide: MatBottomSheetRef,

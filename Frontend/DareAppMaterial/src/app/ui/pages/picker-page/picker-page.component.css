@@ -1,7 +1,8 @@
 .container{
-    padding-top: 5px;
+    /* padding-top: 5px;
     height: calc(100vh - 5px);
-    max-height: 100vh;
+    max-height: 100vh; */
+    height: 100%;
 }
 
 .avatar{

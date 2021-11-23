@@ -6,25 +6,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // services and modules
 import { MaterialModule } from './material-module';
+import { SocialModule } from './social-module';
 import { SharedService } from './shared.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginPopupComponent } from './ui/login-popup/login-popup.component';
 import { LandingPageComponent } from './ui/pages/landing-page/landing-page.component';
 import { PickerPageComponent } from './ui/pages/picker-page/picker-page.component';
 import { InfoPageComponent } from './ui/pages/info-page/info-page.component';
-
+import { LoginPageComponent } from './ui/pages/login-page/login-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPopupComponent,
     LandingPageComponent,
     PickerPageComponent,
     InfoPageComponent,
+    LoginPageComponent,
   ],
   imports: [
     MaterialModule,
+    SocialModule,
+    
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

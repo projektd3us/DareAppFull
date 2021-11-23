@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { InfoPageComponent } from '../info-page/info-page.component';
+import { LoginPageComponent } from '../login-page/login-page.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,8 +13,12 @@ export class LandingPageComponent implements OnInit {
 
   constructor(private _bottomSheet: MatBottomSheet) {}
 
-  openBottomSheet(): void {
+  openInfoPage(): void {
     this._bottomSheet.open(InfoPageComponent);
+  }
+  
+  openLoginPage(): void {
+    this._bottomSheet.open(LoginPageComponent);
   }
 
   ngOnInit(): void {

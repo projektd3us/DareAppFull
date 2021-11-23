@@ -7,6 +7,9 @@ html, body, .container{
 .container{
     display:flex;
 	flex-flow: column nowrap;
+    min-height: 100vh;
+    height: 100%;
+    max-height: auto;
 }
 
 .main-toolbar{
