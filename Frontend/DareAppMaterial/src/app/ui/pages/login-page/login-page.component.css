@@ -65,8 +65,8 @@ li, p {
 }
 
 .mat-divider {
-    border-top-color: lightgrey;
-    border-right-color: lightgrey;
+    border-top-color: grey;
+    border-right-color: grey;
 }
 
 
@@ -75,4 +75,12 @@ li, p {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.g-button{
+    background-color: white !important;
+}
+
+.ficon, .gicon {
+    fill: black;
 }

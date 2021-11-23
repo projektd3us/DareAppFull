@@ -26,13 +26,19 @@
         <div class="bottom-wrapper" *ngIf="!localUser.isLoggedIn">
             <div class="button-wrapper">
                 <!-- <button mat-stroked-button color="accent" class="" (click)="openLink($event)" >Continue as Guest</button> -->
-                <button mat-flat-button color="primary" class="landing-button" routerLink="/" (click)="dismiss($event)">Login</button>
-                <button mat-flat-button color="primary" class="landing-button" routerLink="/" (click)="dismiss($event)">Register</button>
+                <button mat-flat-button disabled color="primary" class="landing-button" routerLink="/" (click)="dismiss($event)">Login</button>
+                <button mat-flat-button disabled color="primary" class="landing-button" routerLink="/" (click)="dismiss($event)">Register</button>
             </div>
             <mat-divider class="separator"></mat-divider>         
             <div class="social-wrapper">
-                <button mat-flat-button color="accent" class="social-button" routerLink="/" (click)="signInWithGoogle()">Google</button>
-                <button mat-flat-button color="accent" class="social-button" routerLink="/" (click)="signInWithFB()">Facebook</button>
+                <button mat-flat-button color="accent" class="social-button g-button" routerLink="/" (click)="signInWithGoogle()">
+                    <i src="https://dare.webjuice.ro/google-brands.svg" class="gicon"></i>
+                    Sign in with Google
+                </button>
+                <button mat-flat-button color="warn" class="social-button" routerLink="/" (click)="signInWithFB()">
+                    <i src="https://dare.webjuice.ro/facebook-brands.svg" class="ficon"></i>
+                    Sign in with Facebook
+                </button>
             </div>
         </div>
         
