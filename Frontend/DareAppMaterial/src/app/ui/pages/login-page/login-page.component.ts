@@ -34,7 +34,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      verticalPosition: 'top',});
   }
 
   ngOnInit(): void {
@@ -77,19 +79,27 @@ export class LoginPageComponent implements OnInit {
 
 
 
-
-
   //google login stuff
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  async signInWithGoogle(): Promise<void> {
+    await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    if (this.localUser.isLoggedIn){
+      this.openSnackBar("Successfully logged in!", "ok")
+    }
   }
 
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  async signInWithFB(): Promise<void> {
+    await this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    if (this.localUser.isLoggedIn) {
+      this.openSnackBar("Successfully logged in!", "ok")
+    }
   }
 
-  signOut(): void {
-    this.authService.signOut();
+  async signOut(): Promise<void> {
+    await this.authService.signOut();
+    console.log(this.localUser.isLoggedIn);
+    if (!this.localUser.isLoggedIn) {
+      this.openSnackBar("Successfully logged out!", "ok")
+    }
   }
   
   refreshToken(): void {
