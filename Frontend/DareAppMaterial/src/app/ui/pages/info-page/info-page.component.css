@@ -1,0 +1,12 @@
+li, p {
+    padding-top:1em;
+}
+.bar{
+    padding: 0;
+    margin:0;
+    width: 100wv;
+}
+.info-container{
+    padding: 8px 15px;
+    font-size: calc(70% + 0.7vw);
+}

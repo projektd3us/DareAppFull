@@ -15,7 +15,26 @@ export class PickerPageComponent implements OnInit {
     this.service.getDareTypeList().subscribe(data =>{
       this.cards=data;
     });
-    console.log(this.cards);
+    
+    if(!this.cards){
+      this.cards = [
+        { 
+          DareTypeId: 1,
+          DareTypeName: 'Easy'},
+        {
+          DareTypeId: 2,
+          DareTypeName: 'Crazy'
+        },
+        {
+          DareTypeId: 3,
+          DareTypeName: 'Hard'
+        },
+        {
+          DareTypeId: 4,
+          DareTypeName: 'Machine Generated'
+        }
+      ]
+    }
   }
 
 }

@@ -15,6 +15,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
+
 
 
 @NgModule({
@@ -34,7 +40,10 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatTabsModule,
     MatGridListModule,
     MatCardModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatProgressBarModule,
+    MatChipsModule,
+    MatSnackBarModule
   ],
   providers: [{
     provide: MatBottomSheetRef,
