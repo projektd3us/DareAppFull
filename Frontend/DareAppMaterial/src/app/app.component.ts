@@ -12,6 +12,7 @@ import { fadeInAnimation, slideInOutAnimation } from './animations';
   ]
 })
 export class AppComponent{
+  
   title = 'dare-app-material';
   //constructor(public dialog: MatDialog) {}
 

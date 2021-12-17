@@ -37,4 +37,9 @@ export class PickerPageComponent implements OnInit {
     }
   }
 
+  openPicked(passed: any){
+    console.log("clicked");
+    console.log(passed.replace(' ','_'));
+  }
+
 }

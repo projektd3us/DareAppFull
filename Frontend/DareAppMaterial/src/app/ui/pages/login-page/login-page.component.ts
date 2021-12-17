@@ -40,6 +40,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refreshToken()
     this.authService.authState.subscribe((user) => {
       this.socialUser = user; // init plugin vars
       this.isLoggedin = (user != null);
