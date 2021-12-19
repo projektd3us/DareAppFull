@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { MatButton } from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
@@ -35,12 +35,19 @@ export class LoginPageComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      duration: 2000,
-      verticalPosition: 'top',});
+      duration: 1000,
+      verticalPosition: 'top',
+      panelClass: 'status-snackbar'});
   }
 
+
   ngOnInit(): void {
+    this.authService.initState.subscribe((user) => {
+        this.refreshToken();
+    });
+
     this.authService.authState.subscribe((user) => {
+
       this.socialUser = user; // init plugin vars
       this.isLoggedin = (user != null);
 
@@ -61,11 +68,11 @@ export class LoginPageComponent implements OnInit {
           dareTypeCount: 0
         }
       }
-
       console.log(this.socialUser);
     });
   }
-  
+
+
  //bottom sheet
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
@@ -83,14 +90,14 @@ export class LoginPageComponent implements OnInit {
   async signInWithGoogle(): Promise<void> {
     await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     if (this.localUser.isLoggedIn){
-      this.openSnackBar("Successfully logged in!", "ok")
+      this.openSnackBar("Successfully signed in!", "ok")
     }
   }
 
   async signInWithFB(): Promise<void> {
     await this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     if (this.localUser.isLoggedIn) {
-      this.openSnackBar("Successfully logged in!", "ok")
+      this.openSnackBar("Successfully signed in!", "ok")
     }
   }
 
@@ -98,15 +105,18 @@ export class LoginPageComponent implements OnInit {
     await this.authService.signOut();
     console.log(this.localUser.isLoggedIn);
     if (!this.localUser.isLoggedIn) {
-      this.openSnackBar("Successfully logged out!", "ok")
+      this.openSnackBar("Successfully signed out!", "ok")
     }
   }
   
   refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+    try{
+      this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+    }
+    catch{
+      console.log("google reauth problem");
+    }
   }
-
-
 
 
 }
