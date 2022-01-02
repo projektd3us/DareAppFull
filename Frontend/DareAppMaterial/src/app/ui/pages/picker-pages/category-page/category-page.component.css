@@ -1,0 +1,59 @@
+.avatar{
+    background-size: cover;
+    border-radius: 0% !important;
+}
+
+.default{
+    background-image: url('https://dare.webjuice.ro/playing-cards.png');
+}
+
+.easy{
+    background-image: url('https://dare.webjuice.ro/cheese.png');
+}
+
+.machine{
+    background-image: url('https://dare.webjuice.ro/robot.png');
+}
+
+.dirty{
+    background-image: url('https://dare.webjuice.ro/heart.png');
+}
+
+.crazy{
+    background-image: url('https://dare.webjuice.ro/devil.png');
+}
+
+/* colors */
+.default-color{
+    background-color: slategray;
+}
+
+.easy-color{
+    background-color: yellow;
+}
+
+.machine-generated-color{
+    background-color: gray;
+}
+
+.dirty-color{
+    background-color: red;
+}
+
+.crazy-color{
+    background-color: orange;
+}
+
+
+.container{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dare-card{
+    width: 80%;
+
+}

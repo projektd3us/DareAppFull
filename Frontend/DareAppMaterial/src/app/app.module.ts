@@ -13,6 +13,7 @@ import { LandingPageComponent } from './ui/pages/landing-page/landing-page.compo
 import { PickerPageComponent } from './ui/pages/picker-page/picker-page.component';
 import { InfoPageComponent } from './ui/pages/info-page/info-page.component';
 import { LoginPageComponent } from './ui/pages/login-page/login-page.component';
+import { CategoryPageComponent } from './ui/pages/picker-pages/category-page/category-page.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { LoginPageComponent } from './ui/pages/login-page/login-page.component';
     PickerPageComponent,
     InfoPageComponent,
     LoginPageComponent,
+    CategoryPageComponent,
   ],
   imports: [
     MaterialModule,

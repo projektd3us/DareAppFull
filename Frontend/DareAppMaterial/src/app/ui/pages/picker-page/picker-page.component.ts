@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Params, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class PickerPageComponent implements OnInit {
 
-  constructor(private service:SharedService) { }
+  constructor(private service:SharedService, private router:Router) { }
   cards:any;
 
   ngOnInit(): void {
@@ -38,8 +39,12 @@ export class PickerPageComponent implements OnInit {
   }
 
   openPicked(passed: any){
-    console.log("clicked");
-    console.log(passed.replace(' ','_'));
+    var categoryName: string = passed.replace(' ','_');
+
+    let urlTree = this.router.parseUrl('/category-page');
+    urlTree.queryParams['categoryName'] = categoryName;
+
+    this.router.navigateByUrl(urlTree); 
   }
 
 }
