@@ -1,12 +1,43 @@
 
 <div class="container">
-    <mat-card class="dare-card default-color" [ngClass]="categoryColor">
-    <mat-card-header style="background-color: white; padding:10px; border-radius: 5px;">
+
+    <div class="info-button button">
+        <button mat-mini-fab flat class="fab default-color" [ngClass]="categoryColor" (click)="openInfoPage()">
+          <mat-icon>lightbulb</mat-icon>
+        </button>
+    </div>
+
+    <div class="account-button button">
+        <button mat-mini-fab flat class="fab default-color" [ngClass]="categoryColor" (click)="openLoginPage()">
+          <mat-icon>person</mat-icon>
+        </button>
+    </div>
+
+    <mat-card flat class="dare-card default-color" [ngClass]="categoryColor">
+
+    <mat-card-header>
         <div mat-card-avatar class="default avatar" 
-        [ngClass]="orderObj"></div>
+        [ngClass]="categoryPic"></div>
         <mat-card-title>{{categoryTitle | titlecase}} Dares</mat-card-title>
         <mat-card-subtitle>{{categoryTitle | titlecase}} Dare Type</mat-card-subtitle>
     </mat-card-header>
-</mat-card>
+
+    <mat-card-content  class="content-container">
+        <h1>Pretend to be the person to your left for 1 minute. <br><br> If you can't then hit your friend!</h1>
+    </mat-card-content>
+
+    </mat-card>
+
+    <div class="button wrapper">
+        <button mat-flat-button flat class="fab spaced-button default-color" [ngClass]="categoryColor" routerLink="/picker-page">
+            <mat-icon>chevron_left</mat-icon>Categories
+        </button>
+
+        <button mat-flat-button flat class="fab spaced-button default-color" [ngClass]="categoryColor">
+            Next Dare<mat-icon>chevron_right</mat-icon>
+        </button>
+    </div>
+
+    
 </div>
 

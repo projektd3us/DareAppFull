@@ -11,7 +11,7 @@
     background-image: url('https://dare.webjuice.ro/cheese.png');
 }
 
-.machine{
+.machine-generated{
     background-image: url('https://dare.webjuice.ro/robot.png');
 }
 
@@ -25,23 +25,23 @@
 
 /* colors */
 .default-color{
-    background-color: slategray;
+    background-color: #6b7b83;
 }
 
 .easy-color{
-    background-color: yellow;
+    background-color: #ffd24a;
 }
 
 .machine-generated-color{
-    background-color: gray;
+    background-color: #8da1ab;
 }
 
 .dirty-color{
-    background-color: red;
+    background-color: #a9362e;
 }
 
 .crazy-color{
-    background-color: orange;
+    background-color: #a9362e;
 }
 
 
@@ -49,11 +49,72 @@
     display: flex;
     height: 100vh;
     width: 100vw;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
 }
 
 .dare-card{
     width: 80%;
 
+}
+
+
+.info-button{
+    position: fixed;
+    top:calc(2vw + 5px);
+    left:calc(2vw + 5px);
+    width: calc(2vw + 40px);
+    height: calc(2vw + 40px);
+}
+
+.account-button{
+    position: fixed;
+    top:calc(2vw + 5px);
+    right:calc(2vw + 5px);
+    width: calc(2vw + 40px);
+    height: calc(2vw + 40px);
+}
+
+.fab{
+    width: 100%;
+    height: 100%;
+    box-shadow: none !important;
+}
+
+.fab > mat-icon{
+    color:white;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: calc(80% + 64px);
+    padding-top: 2vh;
+}
+
+.spaced-button{
+    margin: 2vh;
+    padding: 5px;
+    height: 5vh;
+    color:rgba(0,0,0,.87);
+    
+    font-size:12px;
+}
+
+.content-container{
+    max-height: 50vh;
+    min-height: 8vh;
+
+
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.content-container > h1{
+    padding: 2vh;
 }
