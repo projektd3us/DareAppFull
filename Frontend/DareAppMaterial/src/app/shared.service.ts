@@ -51,7 +51,7 @@ export class SharedService {
   }
 
   deleteDare(id:any){
-    return this.http.delete<any>(this.APIUrl+'/dare' + id);
+    return this.http.delete<any>(this.APIUrl+'/dare', id);
   }
 
   //extra
@@ -62,4 +62,13 @@ export class SharedService {
   getNewDareId():Observable<any>{
     return this.http.get<any>(this.APIUrl+'/dare/GetNewDareId');
   }
+  
+  //user login
+
+
+  //user actions
+  getNext(dareTypeName:any):Observable<any>{ //tbd
+    return this.http.get<any>(this.APIUrl + '/useractions', dareTypeName);
+  }
+
 }

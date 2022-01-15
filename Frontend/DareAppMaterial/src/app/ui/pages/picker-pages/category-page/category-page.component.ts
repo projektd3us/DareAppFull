@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from 'src/app/shared.service';
 import { InfoPageComponent } from '../../info-page/info-page.component';
 import { LoginPageComponent } from '../../login-page/login-page.component';
 
@@ -10,13 +11,15 @@ import { LoginPageComponent } from '../../login-page/login-page.component';
   styleUrls: ['./category-page.component.css']
 })
 export class CategoryPageComponent implements OnInit {
-  constructor(private router:ActivatedRoute, private _bottomSheet: MatBottomSheet) { 
+  constructor(private router: ActivatedRoute, private _bottomSheet: MatBottomSheet, private service: SharedService) { 
 
   }
   orderObj: any= '';
   categoryTitle: string = '';
   categoryColor: string = '';
   categoryPic: string = '';
+
+  dareTypeCurrent: any = null;
 
   ngOnInit(): void {
     this.router.queryParams.subscribe((i) => {
@@ -30,6 +33,7 @@ export class CategoryPageComponent implements OnInit {
     console.log(this.categoryTitle);
     console.log(this.categoryColor);
     console.log(this.categoryPic);
+    console.log(this.orderObj);
 
   }
 
@@ -40,5 +44,12 @@ export class CategoryPageComponent implements OnInit {
 
   openInfoPage(): void {
     this._bottomSheet.open(InfoPageComponent);
+  }
+
+  getNextDareClick(): void {
+    this.service.getNext(this.orderObj).subscribe(data => {
+      this.dareTypeCurrent = data;
+    });
+    console.log(this.dareTypeCurrent);
   }
 }
