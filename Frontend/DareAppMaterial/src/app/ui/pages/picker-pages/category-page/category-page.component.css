@@ -100,7 +100,7 @@
     height: 5vh;
     color:rgba(0,0,0,.87);
     
-    font-size:12px;
+    font-size:15px;
 }
 
 .content-container{
@@ -117,4 +117,12 @@
 
 .content-container > h1{
     padding: 2vh;
+}
+
+
+.btn-content-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
