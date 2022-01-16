@@ -28,7 +28,7 @@ namespace coreAPI.Controllers
             _env = env;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("next")]
         public JsonResult getNext(String dareTypeName, String username)
         {
