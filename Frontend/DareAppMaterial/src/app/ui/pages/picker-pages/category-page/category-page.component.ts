@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
+import { UserService } from 'src/app/user.service';
 import { InfoPageComponent } from '../../info-page/info-page.component';
 import { LoginPageComponent } from '../../login-page/login-page.component';
 
@@ -11,7 +12,12 @@ import { LoginPageComponent } from '../../login-page/login-page.component';
   styleUrls: ['./category-page.component.css']
 })
 export class CategoryPageComponent implements OnInit {
-  constructor(private router: ActivatedRoute, private _bottomSheet: MatBottomSheet, private service: SharedService) { 
+  constructor(
+    private router: ActivatedRoute, 
+    private _bottomSheet: MatBottomSheet, 
+    private service: SharedService,
+    public userService: UserService
+    ) { 
 
   }
   orderObj: any= '';
@@ -47,9 +53,10 @@ export class CategoryPageComponent implements OnInit {
   }
 
   getNextDareClick(): void {
-    this.service.getNext(this.orderObj).subscribe(data => {
+    this.service.getNext(this.orderObj, this.userService.localUser.email).subscribe(data => {
       this.dareTypeCurrent = data;
     });
     console.log(this.dareTypeCurrent);
+    console.log(this.userService.localUser.email);
   }
 }

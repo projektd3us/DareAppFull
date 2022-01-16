@@ -67,8 +67,8 @@ export class SharedService {
 
 
   //user actions
-  getNext(dareTypeName:any):Observable<any>{ //tbd
-    return this.http.get<any>(this.APIUrl + '/useractions', dareTypeName);
+  getNext(dareTypeName: any, userEmail: any):Observable<any>{ //tbd
+    return this.http.post<any>(this.APIUrl + '/useractions', dareTypeName, userEmail);
   }
 
 }

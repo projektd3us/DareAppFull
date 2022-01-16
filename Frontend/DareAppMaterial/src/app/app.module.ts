@@ -14,6 +14,7 @@ import { PickerPageComponent } from './ui/pages/picker-page/picker-page.componen
 import { InfoPageComponent } from './ui/pages/info-page/info-page.component';
 import { LoginPageComponent } from './ui/pages/login-page/login-page.component';
 import { CategoryPageComponent } from './ui/pages/picker-pages/category-page/category-page.component';
+import { UserService } from './user.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { CategoryPageComponent } from './ui/pages/picker-pages/category-page/cat
     HttpClientModule,
     
   ],
-  providers: [SharedService],
+  providers: [SharedService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

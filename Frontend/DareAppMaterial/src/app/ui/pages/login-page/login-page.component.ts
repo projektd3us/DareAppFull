@@ -5,6 +5,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
 import { Output, EventEmitter } from '@angular/core';
+import { UserService } from 'src/app/user.service';
 
 
 @Component({
@@ -14,28 +15,13 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  @Output() userEvent = new EventEmitter<Object>();
-
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<LoginPageComponent>, 
     private authService: SocialAuthService,
     private _snackBar: MatSnackBar,
+    public userService: UserService,
     ) {}
   
-  // angularx plugin variables
-  socialUser!: SocialUser;
-  isLoggedin: boolean = false;
-
-  // local variable
-  localUser = {
-    isLoggedIn : false,
-    username : "Guest",
-    userType : "Guest",
-    userAvatar : "https://dare.webjuice.ro/starred.png",
-    dareCount: 0,
-    dareTypeCount: 0
-  }
-
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
@@ -43,38 +29,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    try{
-      this.refreshToken()
-    }
-    catch(error){
-      console.error("No google account previously signed in.");
-    }
-
-    this.authService.authState.subscribe((user) => {
-      this.socialUser = user; // init plugin vars
-      this.isLoggedin = (user != null);
-
-      if (user != null){ // init locals
-        this.localUser.isLoggedIn = true;
-        this.localUser.username = this.socialUser.name;
-        this.localUser.userType = this.socialUser.provider;
-        this.localUser.userAvatar = this.socialUser.photoUrl;
-        // push id to backend and check if already existing + get data
-      }
-      else{
-        this.localUser = {
-          isLoggedIn : false,
-          username : "Guest",
-          userType : "Guest",
-          userAvatar : "https://dare.webjuice.ro/starred.png",
-          dareCount: 0,
-          dareTypeCount: 0
-        }
-      }
-      this.userEvent.emit(this.localUser);
-      console.log(this.socialUser);
-    });
+    this.userService.refreshToken();
+    this.userService.syncLocalUserWithSocial();
   }
   
 
@@ -89,41 +45,26 @@ export class LoginPageComponent implements OnInit {
     event.preventDefault();
   }
 
+  // userService calls for auth
 
-
-  //google login stuff
-  async signInWithGoogle(): Promise<void> {
-    await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    if (this.localUser.isLoggedIn){
-      this.openSnackBar("Successfully logged in!", "ok")
+  signInWithGoogle(){
+    this.userService.signInWithGoogle();
+    if (this.userService.isLoggedin){
+      this.openSnackBar("Successfully logged in!", "Ok");
     }
   }
 
-
-  //facebook login
-  async signInWithFB(): Promise<void> {
-    await this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    if (this.localUser.isLoggedIn) {
-      this.openSnackBar("Successfully logged in!", "ok")
+  signInWithFB(){
+    this.userService.signInWithFB();
+    if (this.userService.isLoggedin){
+      this.openSnackBar("Successfully logged in!", "Ok");
     }
   }
 
-
-  //global signout
-  async signOut(): Promise<void> {
-    await this.authService.signOut();
-    console.log(this.localUser.isLoggedIn);
-    if (!this.localUser.isLoggedIn) {
-      this.openSnackBar("Successfully logged out!", "ok")
+  signOut(){
+    this.userService.signOut();
+    if (this.userService.isLoggedin){
+      this.openSnackBar("Successfully signed out!", "Ok");
     }
   }
-  
-  //google refresh token
-  refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-
-
-
 }
