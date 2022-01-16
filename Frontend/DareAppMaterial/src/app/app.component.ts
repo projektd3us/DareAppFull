@@ -1,6 +1,7 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, ViewChild } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { fadeInAnimation, slideInOutAnimation } from './animations';
+import { LoginPageComponent } from './ui/pages/login-page/login-page.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ import { fadeInAnimation, slideInOutAnimation } from './animations';
 export class AppComponent{
   
   title = 'dare-app-material';
+
+  @ViewChild(LoginPageComponent) socialStatus : any;
   //constructor(public dialog: MatDialog) {}
 
   // openDialog() {

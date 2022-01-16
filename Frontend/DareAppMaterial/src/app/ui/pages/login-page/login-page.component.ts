@@ -4,6 +4,7 @@ import { MatButton } from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
+import { Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvid
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+
+  @Output() userEvent = new EventEmitter<Object>();
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<LoginPageComponent>, 
@@ -40,7 +43,14 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.refreshToken()
+
+    try{
+      this.refreshToken()
+    }
+    catch(error){
+      console.error("No google account previously signed in.");
+    }
+
     this.authService.authState.subscribe((user) => {
       this.socialUser = user; // init plugin vars
       this.isLoggedin = (user != null);
@@ -62,11 +72,12 @@ export class LoginPageComponent implements OnInit {
           dareTypeCount: 0
         }
       }
-
+      this.userEvent.emit(this.localUser);
       console.log(this.socialUser);
     });
   }
   
+
  //bottom sheet
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
@@ -88,6 +99,8 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
+
+  //facebook login
   async signInWithFB(): Promise<void> {
     await this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     if (this.localUser.isLoggedIn) {
@@ -95,6 +108,8 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
+
+  //global signout
   async signOut(): Promise<void> {
     await this.authService.signOut();
     console.log(this.localUser.isLoggedIn);
@@ -103,6 +118,7 @@ export class LoginPageComponent implements OnInit {
     }
   }
   
+  //google refresh token
   refreshToken(): void {
     this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }

@@ -28,7 +28,7 @@ export class CategoryPageComponent implements OnInit {
 
     this.categoryTitle = this.orderObj.replace('_', ' '); // machine_generated -> machine generated
     this.categoryColor = this.orderObj.replace('_', '-')+ '-color'; // machine_generated -> machine-generated-color
-    this.categoryPic = this.orderObj.replace('_', '-');
+    this.categoryPic = this.orderObj.replace('_', '-'); // machine_generated -> machine-generated
 
     console.log(this.categoryTitle);
     console.log(this.categoryColor);
