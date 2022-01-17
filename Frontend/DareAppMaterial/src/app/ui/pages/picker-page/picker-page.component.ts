@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Params, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-picker-page',
@@ -9,7 +10,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class PickerPageComponent implements OnInit {
 
-  constructor(private service:SharedService, private router:Router) { }
+  constructor(private service:SharedService, private router:Router, public userService:UserService) { }
   cards:any;
 
   ngOnInit(): void {
@@ -45,6 +46,11 @@ export class PickerPageComponent implements OnInit {
     urlTree.queryParams['categoryName'] = categoryName;
 
     this.router.navigateByUrl(urlTree); 
+    if(this.userService.isLoggedin){
+      this.service.updateGamesPlayed(this.userService.localUser.email).subscribe(data => {
+      });
+    }
+    
   }
 
 }

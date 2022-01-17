@@ -136,7 +136,7 @@ namespace coreAPI.Controllers
             return new JsonResult(table);
         }
 
-        [HttpPut]
+        [HttpGet]
         [Route("gamesplayed")]
         public JsonResult updateGamesPlayed(string username)
         {

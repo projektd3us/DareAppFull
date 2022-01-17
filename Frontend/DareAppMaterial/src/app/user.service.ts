@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvid
 export class UserService {
   constructor(    
     private authService: SocialAuthService,
+    private service: SharedService
     ) { }
 
     public socialUser!: SocialUser;
@@ -60,13 +62,23 @@ export class UserService {
       await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
       if (this.localUser.isLoggedIn){
         console.log("Successfully logged in with Google");
-      }
+
+        this.service.getUserDetails(this.localUser.email).subscribe(data => {
+          this.localUser.dareCount = data[0].DaresDone;
+          this.localUser.dareTypeCount = data[0].GamesPlayed;
+        });
+      } 
     }
 
     async signInWithFB(): Promise<void> {
       await this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
       if (this.localUser.isLoggedIn) {
         console.log("Successfully logged in with Facebook");
+
+        this.service.getUserDetails(this.localUser.email).subscribe(data => {
+          this.localUser.dareCount = data[0].DaresDone;
+          this.localUser.dareTypeCount = data[0].GamesPlayed;
+        });
       }
     }
 
@@ -80,5 +92,12 @@ export class UserService {
     
     refreshToken(): void {
       this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+
+      if (this.localUser.isLoggedIn) {
+        this.service.getUserDetails(this.localUser.email).subscribe(data => {
+          this.localUser.dareCount = data[0].DaresDone;
+          this.localUser.dareTypeCount = data[0].GamesPlayed;
+        });
+      }
     }  
 }

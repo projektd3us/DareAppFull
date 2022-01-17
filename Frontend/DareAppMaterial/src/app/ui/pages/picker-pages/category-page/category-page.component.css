@@ -49,14 +49,16 @@
     display: flex;
     height: 100vh;
     width: 100vw;
+    max-width: 100vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .dare-card{
     width: 80%;
-
+    max-width: 1200px;
 }
 
 
@@ -87,20 +89,31 @@
 }
 
 .wrapper{
+    align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: calc(80% + 64px);
     padding-top: 2vh;
+    max-width: 1200px;
+
+}
+
+.small-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: calc(80% + 64px);
 }
 
 .spaced-button{
+    min-height: 36px;
     margin: 2vh;
     padding: 5px;
     height: 5vh;
     color:rgba(0,0,0,.87);
     
-    font-size:15px;
+    font-size: calc(0.2vw + 14px);
 }
 
 .content-container{
@@ -125,4 +138,49 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.mat-icon-scale{
+    transition: scale(3);
+}
+
+@media all and (max-width: 680px) {
+    .small-left{
+        margin-left: 0;
+    }
+    .small-right{
+        margin-right: 0;
+    }
+
+    .single-button{
+        /* max-width: 90%; */
+        min-height: 32%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        width: calc(80% +64px);
+        max-width: 80%;
+        padding-top: 5vh;
+    }
+    .small-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: calc(80% +64px);
+    }
+}
+
+.cardtitle{
+    margin-bottom: calc(0.2vw + 12px) !important;
+    font-size: calc(0.2vw + 20px);
+}
+
+.cardsubtitle{
+    margin-bottom: calc(0.3vw + 16px);
+    font-size: calc(0.2vw + 14px);
 }

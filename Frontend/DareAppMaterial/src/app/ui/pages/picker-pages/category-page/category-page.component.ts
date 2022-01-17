@@ -25,9 +25,11 @@ export class CategoryPageComponent implements OnInit {
   categoryColor: string = '';
   categoryPic: string = '';
 
-  dareTypeCurrent: any = null;
+  dareCurrent: any = null;
 
   ngOnInit(): void {
+    this.dareCurrent = {DareId: 999, DareText: "Press next to get a new Dare!", DareTypeId: 999};
+
     this.router.queryParams.subscribe((i) => {
       this.orderObj = i.categoryName;
     });
@@ -53,10 +55,10 @@ export class CategoryPageComponent implements OnInit {
   }
 
   getNextDareClick(): void {
-    this.service.getNext(this.orderObj, this.userService.localUser.email).subscribe(data => {
-      this.dareTypeCurrent = data;
+    this.service.next(this.orderObj, this.userService.localUser.email).subscribe(data => {
+      this.dareCurrent = data[0];
     });
-    console.log(this.dareTypeCurrent);
+    console.log(this.dareCurrent);
     console.log(this.userService.localUser.email);
   }
 }

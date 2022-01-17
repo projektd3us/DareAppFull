@@ -14,7 +14,7 @@
             <mat-card-content *ngIf="userService.localUser.isLoggedIn" class="card-content">                 
                     <span>Dares done: {{userService.localUser.dareCount}}</span>
                     <mat-divider vertical></mat-divider>
-                    <span>Dare Types tried: {{userService.localUser.dareTypeCount}}</span>
+                    <span>Games Played: {{userService.localUser.dareTypeCount}}</span>
             </mat-card-content>
             <mat-card-actions *ngIf="userService.localUser.isLoggedIn">
                 <button mat-button color="primary" fxFlexAlign="end" routerLink="/landing-page"(click)="signOut()">Sign Out</button>

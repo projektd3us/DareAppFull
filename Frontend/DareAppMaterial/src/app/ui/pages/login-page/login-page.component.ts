@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
 import { Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/user.service';
+import { SharedService } from 'src/app/shared.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class LoginPageComponent implements OnInit {
     private authService: SocialAuthService,
     private _snackBar: MatSnackBar,
     public userService: UserService,
+    public service: SharedService
     ) {}
   
   openSnackBar(message: string, action: string) {
@@ -31,6 +33,13 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.userService.refreshToken();
     this.userService.syncLocalUserWithSocial();
+
+    if(this.userService.isLoggedin){
+      this.service.getUserDetails(this.userService.localUser.email).subscribe(data => {
+        this.userService.localUser.dareCount = data[0].DaresDone;
+        this.userService.localUser.dareTypeCount = data[0].GamesPlayed;
+      });
+    }
   }
   
 
