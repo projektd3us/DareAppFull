@@ -1,0 +1,50 @@
+<!-- <mat-progress-bar mode="indeterminate" class="bar" color="secondary"></mat-progress-bar> -->
+
+<div class="info-container container dark-background">
+    <div class="sheet-wrapper">
+
+        <mat-card class="user-card">
+            <mat-card-header>
+                <img mat-card-avatar src={{userService.localUser.userAvatar}}>
+                <mat-card-title>{{ userService.localUser.username }}</mat-card-title>
+                <mat-card-subtitle>{{ userService.localUser.userType | titlecase}} User</mat-card-subtitle>
+                <span class="separator"></span>
+            </mat-card-header>
+
+            <mat-card-content *ngIf="userService.localUser.isLoggedIn" class="card-content">                 
+                    <span>Dares done: {{userService.localUser.dareCount}}</span>
+                    <mat-divider vertical></mat-divider>
+                    <span>Games Played: {{userService.localUser.dareTypeCount}}</span>
+            </mat-card-content>
+            <mat-card-actions *ngIf="userService.localUser.isLoggedIn">
+                <button mat-button color="primary" fxFlexAlign="end" routerLink="/landing-page"(click)="signOut()">Sign Out</button>
+            </mat-card-actions>
+
+        </mat-card>
+
+
+        <div class="bottom-wrapper" *ngIf="!userService.localUser.isLoggedIn">
+            <div class="button-wrapper">
+                <!-- <button mat-stroked-button color="accent" class="" (click)="openLink($event)" >Continue as Guest</button> -->
+                <button mat-flat-button disabled color="primary" class="landing-button" routerLink="/" (click)="dismiss($event)">Login</button>
+                <button mat-flat-button disabled color="primary" class="landing-button" routerLink="/" (click)="dismiss($event)">Register</button>
+            </div>
+            <mat-divider class="separator"></mat-divider>         
+            <div class="social-wrapper">
+                <button mat-flat-button color="accent" class="social-button g-button" routerLink="/landing-page" (click)="signInWithGoogle()">
+                    <i src="https://dare.webjuice.ro/google-brands.svg" class="gicon"></i>
+                    Sign in with Google
+                </button>
+                <button mat-flat-button color="warn" class="social-button" routerLink="/landing-page" (click)="signInWithFB()">
+                    <i src="https://dare.webjuice.ro/facebook-brands.svg" class="ficon"></i>
+                    Sign in with Facebook
+                </button>
+            </div>
+        </div>
+        
+        <div class="logged-wrapper" *ngIf="userService.localUser.isLoggedIn">
+            
+        </div>
+
+    </div>
+</div>

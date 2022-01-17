@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { DareComponent } from './dare/dare.component';
-import { DareTypeComponent } from './dare-type/dare-type.component';
+import { LandingPageComponent } from './ui/pages/landing-page/landing-page.component';
+import { PickerPageComponent } from './ui/pages/picker-page/picker-page.component';
+import { CategoryPageComponent } from './ui/pages/picker-pages/category-page/category-page.component';
 
 const routes: Routes = [
-  {path:'dare', component:DareComponent},
-  {path:'daretype', component:DareTypeComponent}
+  {path: '', pathMatch: 'full', redirectTo: '/landing-page'},
+  {path:'picker-page', component:PickerPageComponent},
+  {path:'landing-page', component:LandingPageComponent},
+  {path:'category-page', component:CategoryPageComponent},
+
 ];
 
 @NgModule({

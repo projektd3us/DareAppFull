@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -51,7 +51,7 @@ export class SharedService {
   }
 
   deleteDare(id:any){
-    return this.http.delete<any>(this.APIUrl+'/dare' + id);
+    return this.http.delete<any>(this.APIUrl+'/dare', id);
   }
 
   //extra
@@ -62,4 +62,25 @@ export class SharedService {
   getNewDareId():Observable<any>{
     return this.http.get<any>(this.APIUrl+'/dare/GetNewDareId');
   }
+  
+  //user login
+
+
+  //user actions
+  // next(dareTypeName: any, username: any):Observable<any>{ //tbd
+  //   return this.http.post<any>(this.APIUrl + '/useractions/next/', dareTypeName, username);
+  // }
+
+  next(dareTypeName: any, username: any):Observable<any>{ //tbd
+    return this.http.get<any>(this.APIUrl + `/useractions/next?dareTypeName=${dareTypeName}&username=${username}`);
+  }
+
+  updateGamesPlayed(username: any): Observable<any>{
+    return this.http.get<any>(this.APIUrl + `/useractions/gamesplayed?username=${username}`);
+  }
+
+  getUserDetails(username: any): Observable<any>{
+    return this.http.get<any>(this.APIUrl + `/useractions/userdetails?username=${username}`);
+  }
+
 }

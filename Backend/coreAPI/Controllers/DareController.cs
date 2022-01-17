@@ -10,11 +10,16 @@ using System.Data;
 using coreAPI.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization; //jwt @robert
+using Microsoft.AspNetCore.Authentication.JwtBearer; //jwt @robert
+
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //enable the commentary below for restricting access
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class DareController : ControllerBase
     {
         private readonly IConfiguration _configuration;

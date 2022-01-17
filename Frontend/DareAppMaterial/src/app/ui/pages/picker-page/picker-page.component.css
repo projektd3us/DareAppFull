@@ -1,0 +1,35 @@
+.container{
+    /* padding-top: 5px;
+    height: calc(100vh - 5px);
+    max-height: 100vh; */
+    height: 100%;
+}
+
+.avatar{
+    background-size: cover;
+    border-radius: 0% !important;
+}
+
+.card{
+    margin:15px;
+}
+
+.default{
+    background-image: url('https://dare.webjuice.ro/playing-cards.png');
+}
+
+.easy{
+    background-image: url('https://dare.webjuice.ro/cheese.png');
+}
+
+.machine{
+    background-image: url('https://dare.webjuice.ro/robot.png');
+}
+
+.dirty{
+    background-image: url('https://dare.webjuice.ro/heart.png');
+}
+
+.crazy{
+    background-image: url('https://dare.webjuice.ro/devil.png');
+}

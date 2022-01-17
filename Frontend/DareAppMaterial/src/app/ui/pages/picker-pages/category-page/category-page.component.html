@@ -1,0 +1,59 @@
+
+<div class="container">
+
+    <div class="info-button button">
+        <button mat-mini-fab flat class="fab default-color" [ngClass]="categoryColor" (click)="openInfoPage()">
+          <mat-icon>lightbulb</mat-icon>
+        </button>
+    </div>
+
+    <div class="account-button button">
+        <button mat-mini-fab flat class="fab default-color" [ngClass]="categoryColor" (click)="openLoginPage()">
+          <mat-icon>person</mat-icon>
+        </button>
+    </div>
+
+    <mat-card flat class="dare-card default-color" [ngClass]="categoryColor">
+
+    <mat-card-header>
+        <div mat-card-avatar class="default avatar" 
+        [ngClass]="categoryPic"></div>
+        <mat-card-title class="cardtitle">{{categoryTitle | titlecase}} Dares</mat-card-title>
+        <mat-card-subtitle class="cardsubtitle">{{categoryTitle | titlecase}} Dare Type</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content  class="content-container">
+        <!-- <h1>Pretend to be the person to your left for 1 minute. <br><br> If you can't then hit your friend!</h1> -->
+        <h1>{{dareCurrent.DareText}}</h1>
+    </mat-card-content>
+
+    </mat-card>
+
+    <div class="button wrapper">
+        <div class="button small-wrapper">
+            <button mat-flat-button flat class="fab spaced-button default-color small-left" [ngClass]="categoryColor" routerLink="/landing-page">
+                <div class="btn-content-wrapper">
+                    <mat-icon class="mat-icon-scale">home</mat-icon>
+                    <span>Home Page</span>
+                </div>
+            </button>
+            <button mat-flat-button flat class="fab spaced-button default-color small-right" [ngClass]="categoryColor" routerLink="/picker-page">
+                <div class="btn-content-wrapper">
+                    <mat-icon class="mat-icon-scale">menu</mat-icon>
+                    <span>Change Type</span>
+                </div>
+            </button>
+        </div>
+        
+
+        <button mat-flat-button flat class="fab spaced-button default-color single-button" [ngClass]="categoryColor" (click)="getNextDareClick()">
+
+                <span>Next Dare</span>
+                <mat-icon class="mat-icon-scale">play_arrow</mat-icon>
+
+        </button>
+    </div>
+
+    
+</div>
+
