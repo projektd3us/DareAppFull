@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer; //Jwt auth package 5.0.0 @robert
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -5,10 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;                // also for Jwt
 using Newtonsoft.Json.Serialization;
 using System.IO;
-using Microsoft.AspNetCore.Authentication.JwtBearer; //Jwt auth package 5.0.0 @robert
-using Microsoft.IdentityModel.Tokens;                // also for Jwt
 
 namespace coreAPI
 {
@@ -61,6 +61,7 @@ namespace coreAPI
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,8 +110,8 @@ namespace coreAPI
             //Photos Folder setup
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider= new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"Photos")),
-                RequestPath="/Photos"
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Photos")),
+                RequestPath = "/Photos"
             });
 
             //Jwt Auth @robert

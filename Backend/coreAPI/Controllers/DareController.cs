@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using coreAPI.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
 using System.Data;
-using coreAPI.Models;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Authorization; //jwt @robert
-using Microsoft.AspNetCore.Authentication.JwtBearer; //jwt @robert
+using System.Data.SqlClient;
 
 
 namespace WebAPI.Controllers

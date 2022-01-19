@@ -1,17 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
+using System;
 using System.Data;
-using coreAPI.Models;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
+using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.AspNetCore.Session;
 
 namespace coreAPI.Controllers
 {
@@ -91,26 +85,27 @@ namespace coreAPI.Controllers
         [HttpPost]
         public JsonResult createAccount(String username, String password)
         {
-            try {
-            string query = @"
+            try
+            {
+                string query = @"
                     insert into Users values 
                     ('" + username.ToString() + @"', '" + password.ToString() + @"')
                     ";
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("DareGameCon");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                DataTable table = new DataTable();
+                string sqlDataSource = _configuration.GetConnectionString("DareGameCon");
+                SqlDataReader myReader;
+                using (SqlConnection myCon = new SqlConnection(sqlDataSource))
                 {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
+                    myCon.Open();
+                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                    {
+                        myReader = myCommand.ExecuteReader();
+                        table.Load(myReader); ;
 
-                    myReader.Close();
-                    myCon.Close();
+                        myReader.Close();
+                        myCon.Close();
+                    }
                 }
-            }
                 return new JsonResult("true");
             }
             catch (Exception ex)
@@ -118,12 +113,12 @@ namespace coreAPI.Controllers
                 return new JsonResult("false");
             }
 
-            
 
-            
+
+
         }
     }
 
-   
+
 }
 

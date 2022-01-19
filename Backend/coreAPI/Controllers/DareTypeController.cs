@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using coreAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
 using System.Data;
-using coreAPI.Models;
+using System.Data.SqlClient;
 
 namespace coreAPI.Controllers
 {
@@ -50,7 +45,7 @@ namespace coreAPI.Controllers
         public JsonResult Get(int id)
         {
             string query = @"
-                    select DareTypeId, DareTypeName from dbo.DareType where DareTypeId ='" +  id + @"'";
+                    select DareTypeId, DareTypeName from dbo.DareType where DareTypeId ='" + id + @"'";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("DareGameCon");
             SqlDataReader myReader;

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
+using System;
 using System.Data;
-using coreAPI.Models;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
+using System.Data.SqlClient;
 using System.Globalization;
 
 namespace coreAPI.Controllers
@@ -50,14 +44,14 @@ namespace coreAPI.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
                     myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); 
+                    table.Load(myReader);
 
                     myReader.Close();
                     myCon.Close();
                 }
             }
             DataRow row = table.Rows[0];
-            DataRow row2 = table.Rows[table.Rows.Count-1];
+            DataRow row2 = table.Rows[table.Rows.Count - 1];
             int startNum = Convert.ToInt32(row["DareId"]);
             int endNum = Convert.ToInt32(row2["DareId"]) + 1;
             Random ram = new Random();
@@ -164,9 +158,9 @@ namespace coreAPI.Controllers
         }
 
 
-        public IActionResult Index()    
+        public IActionResult Index()
         {
             return View();
-        }   
+        }
     }
 }
